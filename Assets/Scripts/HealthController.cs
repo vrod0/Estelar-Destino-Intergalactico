@@ -12,4 +12,9 @@ public class HealthController : MonoBehaviour
 
         if (health <= 0) Destroy(gameObject);
     }
+
+    public float GetHealth()
+    {
+        return health;
+    }
 }

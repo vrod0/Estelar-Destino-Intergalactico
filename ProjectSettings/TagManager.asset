@@ -7,6 +7,8 @@ TagManager:
   - CinemachineTarget
   - Collectible
   - Gun
+  - BulletEnemy
+  - Energy
   layers:
   - Default
   - TransparentFX

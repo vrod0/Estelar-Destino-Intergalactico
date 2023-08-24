@@ -11,11 +11,15 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject aimPanel;
 
+    [SerializeField] HealthController healthController;
+
     [SerializeField] float normalSensitivity = 1.0f;
 
     [SerializeField] float aimSensitivity = 0.5f;
 
     [SerializeField] private GameObject panelGameOver;
+
+    [SerializeField] private GameObject panelWin;
 
     [SerializeField] Animator animator;
 
@@ -91,10 +95,36 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("BulletEnemy"))
+        {
+            Debug.Log("ataque del enemigo");
+            TakeDamage(4);
+        }
+        else if (other.CompareTag("Energy"))
+        {
+            if (_currentHealth < 100)
+            {
+                _currentHealth += Mathf.Abs(10);
+                healthBarController.SetHealth(_currentHealth);
+            }
+        }
+        else if (other.CompareTag("Win"))
+        {
+            Time.timeScale = 0.0f;
+            Debug.Log("Consegui la mision");
+            panelWin.SetActive(true);
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         _currentHealth -= Mathf.Abs(damage);
+
         healthBarController.SetHealth(_currentHealth);
+
+        healthController.TakeDamage(damage);
 
         if (_currentHealth == 0)
         {
@@ -102,7 +132,6 @@ public class PlayerController : MonoBehaviour
 
             Time.timeScale = 0.0f;
             panelGameOver.SetActive(true);
-            SceneManager.LoadScene(0);
         }
     }
 }

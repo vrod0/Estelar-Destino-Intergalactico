@@ -10,7 +10,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == (other.gameObject.layer | (1 << whatIsEnemy)))
+        if (other.gameObject.layer == (other.gameObject.layer | (1 << whatIsEnemy)) || other.gameObject.layer == (other.gameObject.layer | (1 << whatIsEnemy)))
         {
             HealthController controller = other.gameObject.GetComponent<HealthController>();
             if (controller != null)
