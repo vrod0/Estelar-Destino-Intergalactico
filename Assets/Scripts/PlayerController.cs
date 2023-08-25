@@ -97,6 +97,11 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("ataque del enemigo");
+            TakeDamage(4);
+        }
         if (other.CompareTag("BulletEnemy"))
         {
             Debug.Log("ataque del enemigo");

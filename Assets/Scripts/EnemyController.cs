@@ -25,9 +25,9 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        objectRenderer = GetComponent<Renderer>();
+        //objectRenderer = GetComponent<Renderer>();
 
-        originalColor = objectRenderer.material.color;
+        //originalColor = objectRenderer.material.color;
     }
 
     private void Update()

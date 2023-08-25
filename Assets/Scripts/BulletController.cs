@@ -8,6 +8,7 @@ public class BulletController : MonoBehaviour
 
     [SerializeField] float damage = 50.0f;
 
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.layer == (other.gameObject.layer | (1 << whatIsEnemy)) || other.gameObject.layer == (other.gameObject.layer | (1 << whatIsEnemy)))
@@ -19,5 +20,20 @@ public class BulletController : MonoBehaviour
             }
         }
         Destroy(gameObject);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+                //EnemyControllerOther enemyControllerOther = other.GetComponent<EnemyControllerOther>();
+
+               // if (enemyControllerOther != null)
+                //{
+                    //enemyControllerOther.TakeDamage(35);
+                //}
+            Destroy(other.gameObject);
+           // enemyControllerOther.TakeDamage(35);
+        }
     }
 }
